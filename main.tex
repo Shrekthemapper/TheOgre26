@@ -1,0 +1,368 @@
+\documentclass{article}
+\title{Confined Azimuthal Velocity Distributions In Simple Vortical Flow Dynamics}
+\author{T.M. Montgomery}
+\date{August 21, 2024 \\ Updated: June 3, 2025}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    This is a brief document investigating a problem regarding the vorticity diffusion of an axially symmetric laminar rotating flow. We briefly analyze the stochastic distributions of a confined vortex's azimuthal velocity, $u_\theta (r,t)$, developing approximations and an exact solution to the vorticity transport equation in cylindrical coordinates.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+One notable time-reversible solution to the Navier-Stokes equation with the velocity field, $\vec{u}=\left< 0,u_\theta ,0\right>$, is the Lamb-Oseen vortex.
+\begin{align}\label{Equation 1} 
+\begin{split}
+u_{\theta} (r,t)
+&= \frac{\omega_0 R_0^2}{r}\left(1-e^{-\frac{r^2}{R(t)^2}}\right) \:\:\:\:,\:\: R(t)=\sqrt{4\nu t+R_0^2}\:\:,\:\: R_0>0 \\
+&= \frac{\Gamma_0}{2\pi r}\left(1-e^{-\frac{r^2}{4\nu t}}\right) \:\:\:\:,\:\: R(t)=\sqrt{4\nu t}
+\end{split}
+\end{align}
+where $\omega_0$ is the initial angular velocity with an initial radius, $R_0$, which can be rearranged using the initial circulation formula, $\Gamma_0 = 2\omega_0 \pi R_0^2$. The radial propagation function, $R(t)$, is found by substituting (\ref{Equation 1}) into Navier-Stokes. This velocity function can be derived from the vorticity Gaussian distribution,
+\begin{align*}
+    \vec{\omega}(r,t)= \frac{\Gamma_0}{\pi R(t)^2}e^{-\frac{r^2}{R(t)^2}}\hat{z}
+\end{align*}
+by equating this to the cross product in cylindrical coordinates (noting $u_r =0$),
+\begin{align*} 
+\Vec{\omega}=\nabla \times \Vec{u}
+&= \frac{1}{r}\left(\frac{\partial }{\partial r}\left( r u_\theta\right)- \frac{\partial u_r}{\partial \theta}\right)\hat{z} \\
+&=  \frac{\partial u_\theta}{\partial r}+\frac{u_\theta}{r}\hat{z}
+\end{align*}
+and solving the PDE with the boundary conditions, $u_\theta (0,t)=0$ and $u_\theta (r\to \infty,t)=0$.
+
+%----------------------------------------------------------------------------------
+\begin{figure}[h]
+
+\begin{subfigure}{0.5\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth, height=6cm]{Images/T00677011-Homework1-Graphic1.png}
+\caption{A Lamb-Oseen vortex with the boundary condition, $u_\theta (r\to \infty,t)=0$}
+\label{1a}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.8\linewidth, height=6cm]{Images/fig4.png}
+\caption{Confined Lamb-Oseen vortex with a no-slip boundary condition, $u_\theta (R_f,t)=0$ for some constant, $R_f>0$.}
+\label{1b}
+\end{subfigure}
+\caption{\textit{Cross-sectional circumferential geometry of the Lamb-Oseen vortex at $t=0$ given distinct boundary conditions.}}
+\end{figure}
+%----------------------------------------------------------------------------------
+\newpage
+\section{The Critical Radius And The $u_{D}(r)$ Function on Oseen's Vortex:}
+An insightful observation one can gather about how the velocity distribution decays over time is by plotting the set of its critical points as a curve, defined as $\left( u_\theta \right)_{max}=u_D(r)$ ("D" for "decay"). This is done by taking the partial derivative of $u_\theta$ with respect to $r$, setting this equal to zero, and using an algebraic technique to solve for $r$. The steps to find the core radius, $q(t)$, of the critical point at time $t$ are as follows:
+\begin{align*} 
+0&= \left. \frac{\partial u_\theta}{\partial r}\right|_{r=q(t)}\\
+0&=\omega _0R_0\left(-\frac{1}{r^2}+\frac{1}{r^2}e^{-\frac{r^2}{R^2}}+\frac{2}{R^2}e^{-\frac{r^2}{R^2}}\right) \\
+0&= -\frac{1}{r^2}+\frac{1}{r^2}e^{-\frac{r^2}{R^2}}+\frac{2}{R^2}e^{-\frac{r^2}{R^2}} \\
+-\frac{1}{r^2}+\frac{1}{r^2}e^{-\frac{r^2}{R^2}} &= \frac{2}{R^2}e^{-\frac{r^2}{R^2}} \\
+\frac{1}{r^2}\left( 1-e^{-\frac{r^2}{R^2}}\right) &= \frac{2}{R^2}e^{-\frac{r^2}{R^2}} \\
+e^{\frac{r^2}{R^2}}\left( 1-e^{-\frac{r^2}{R^2}}\right) &= 2\frac{r^2}{R^2} \\
+e^{\frac{r^2}{R^2}} -1 &= 2\frac{r^2}{R^2} \\
+e^{\frac{r^2}{R^2}} &= 2\frac{r^2}{R^2}+1 \\
+\text{Let,}\:\:\:\eta^2=\frac{r^2}{R^2} \\
+e^{\eta^2} &= 2\eta^2+1 \\
+e^{\frac{1}{2}}e^{-\frac{1}{2}}e^{\eta^2} &= 2\left(\eta^2+\frac{1}{2}\right) \\
+\frac{1}{2}e^{-\frac{1}{2}} &= \left(\eta^2+\frac{1}{2}\right)e^{-\eta^2-\frac{1}{2}} \\
+-\frac{1}{2}e^{-\frac{1}{2}} &= -\left(\eta^2+\frac{1}{2}\right)e^{-\eta^2-\frac{1}{2}} \\
+\text{Take the Lambert W of both sides,}\:\:\: \\
+W_{-1}\left(-\frac{1}{2}e^{-\frac{1}{2}}\right) &= W_{-1}\left(-\left(\eta^2+\frac{1}{2}\right)e^{-\eta^2-\frac{1}{2}} \right)\\
+W_{-1}\left(-\frac{1}{2}e^{-\frac{1}{2}}\right) &=-\eta^2-\frac{1}{2} \\
+\eta &= \sqrt{-\frac{1}{2}- W_{-1}\left(-\frac{1}{2}e^{-\frac{1}{2}}\right) }\\
+\frac{r}{R}&=\sqrt{-\frac{1}{2}- W_{-1}\left(-\frac{1}{2}e^{-\frac{1}{2}}\right) }\\
+r&=R(t)\sqrt{-\frac{1}{2}- W_{-1}\left(-\frac{1}{2}e^{-\frac{1}{2}}\right) }\\
+r&=1.120906\dots R(t) \\
+r&\approx R(t)\sqrt{\frac{2\pi}{5}}
+\end{align*}
+Since the solution is a function of time, it can be defined as the critical radius, $q(t)$, times the Lamb-Oseen constant, $L_O$.
+$$q(t)\approx R(t)\sqrt{\frac{2\pi}{5}} $$ 
+where $\sqrt{\frac{2\pi}{5}}$ is an approximation of the Lamb-Oseen constant. $L_O$ to 62 decimal places is,
+\begin{align*}
+L_{O}&=1.12090642277853403197676673569063335993379778247221119947592997\dots \\
+& \% \: \text{Accuracy} = \left(\frac{L_{O}}{\sqrt{\frac{2\pi}{5}}}\right)100 = 99.9918090415 \%
+\end{align*}
+(see the full derivation on my inquiry on \href{https://math.stackexchange.com/questions/4932219/how-do-i-find-the-absolute-maximum-and-minimum-values-of-the-lamb-oseen-vortex}{Math StackExchange})
+The path of critical points as a parametric curve is $\left(q(t), u_\theta (q(t),t) \right)$, which traces the line generated by $u_D(r)$. This parametric line can be written as a function of $r$.
+\begin{align*}
+\begin{split}
+u_D(r)&\approx \frac{\omega_0 R_0^2}{r}\left(1-e^{-\frac{\left(R(t)\sqrt{\frac{2\pi}{5}}\right)^2}{R(t)^2}}\right)\\
+&\approx \frac{\omega_0 R_0^2}{r}\left(1-e^{-\frac{2\pi}{5}}\right) \\
+&\approx \frac{\omega_0 R_0^2}{r}\left(1-e^{-\left(1.1209^2\right)}\right) \\
+\end{split}
+\end{align*}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/fig1.png}
+    \caption{Decay curve, $u_D(r)$, showing the line that traces the critical point for integer time intervals, $t$.}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Modifying the Vortex Equation}
+We artificially construct a distribution satisfying the no-slip condition against a cylindrical wall. 
+\begin{align} \label{Eq2}
+    \begin{split}
+    u_{\theta} (r,t)
+    &= \frac{\omega_0 R_0^2}{r}\left(1-e^{-\frac{r^2}{R(t)^2}B(r)}\right)
+    \end{split}
+\end{align}
+By no means is this an exact solution to the Stokes equation, but it features the ability to control the boundary layer thickness in terms of the shear stress at the wall. This modification introduces the boundary function, $B(r)$ as an $n$th degree polynomial that can be derived as a boundary value problem without a differential equation to work with.
+
+\subsection{Deriving the boundary function, $B(r)$:}
+More abstractly, suppose that a function, $f: \mathbb{R}\to \mathbb{R}$, $x\in \mathbb{R}$ is a unique solution that satisfies,
+\begin{align*}
+    \left\{\begin{matrix}
+    f(0)= \mp \: 1 \:\:,& f(a)=0 \\ f'(0)=0 \:\:,& \:\:f'(a)=\pm \frac{n}{a}
+    \end{matrix}\right.
+\end{align*}
+with constants $a,C,n\in \mathbb{R}$, and a $n$th power of $x$ for which $n>1$. Then $f(x)$ may be obtained as follows:
+\begin{align*}
+    \int f'(a)dx &= \int \pm \frac{n}{a}dx \\
+    &= \int \pm \frac{n}{a} \left( \frac{a^{n-1}}{a^{n-1}}\right) dx \\
+    \textit{Let,} \:\: \int f'(x)dx &= \int \pm \frac{n}{a} \left( \frac{x^{n-1}}{a^{n-1}}\right) dx \\
+    &= \int \pm \frac{nx^{n-1}}{a^n}dx \\
+    &= \pm \frac{x^{n}}{a^n}+C  \\ 
+    f(0) &= \mp \: 1 = C \\
+    \therefore \:\: f(x) &= \pm \frac{x^n}{a^n} \mp 1
+\end{align*}
+Supposing that,
+\begin{align*}
+    B(r)=\left\{\begin{matrix} 0\:,\:\:\:r=R_f \\ 1\:,\:\:\:r=0 \end{matrix}\right.
+\end{align*}
+and letting $a=R_f$, $R_f$ being the "final" radius of the confinement, then,
+\begin{align}\label{Eq3}
+    B(r)=1-\left( \frac{r}{R_f}\right)^n
+\end{align}
+for an unknown power, $n\in \mathbb{R}^+$, $n>1$. The power, $n$, can be found by substituting Equation (\ref{Eq2}) into the $r-\theta$ component of the shear stress tensor,
+\begin{align}\label{Eq4}
+    \begin{split}
+        \tau_{r \theta} &=  \mu \left (\frac{1}{r} \frac{\partial u_r}{\partial \theta}+  \frac{\partial u_\theta }{\partial r} - \frac{u_\theta}{r}\right ) \\
+        &= \mu\frac{\partial}{\partial r}\left(\frac{\omega_{0}R_{0}^{2}}{r}\left(1-e^{-\frac{r^{2}}{R\left(t\right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{n}\right)}\right)\right)-\mu\frac{1}{r}\left(\frac{\omega_{0}R_{0}^{2}}{r}\left(1-e^{-\frac{r^{2}}{R\left(t\right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{n}\right)}\right)\right) \\
+        \tau_{r \theta} (r,t)&= \mu\frac{\omega_{0}R_{0}^{2}}{R\left(t\right)^{2}}\left(\left(2-\frac{\left(n+2\right)r^{n}}{R_{f}^{n}}\right)e^{-\frac{r^{2}}{R\left(t\right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{n}\right)}\right)-\mu\frac{2\omega_{0}R_{0}^{2}}{r^{2}}\left(1-e^{-\frac{r^{2}}{R\left(t\right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{n}\right)}\right)
+    \end{split}
+\end{align}
+and by letting the initial shear stress at $R_f$ be a constant, $\tau_{r\theta}(R_f,0)=\tau_{r\theta 0}$ in Equation (\ref{Eq4}), $n$ can be solved.
+\begin{align}\label{Eq5}
+    \begin{split}
+    \tau_{r\theta}(R_f,0) &=\mu\frac{\omega_{0}R_{0}^{2}}{R\left(0\right)^{2}}\left(\left(2-\frac{\left(n+2\right)R_{f}^{n}}{R_{f}^{n}}\right)e^{-\frac{R_{f}^{2}}{R\left(0\right)^{2}}\left(1-\left(\frac{R_{f}}{R_{f}}\right)^{n}\right)}\right)-\mu\frac{2\omega_{0}R_{0}^{2}}{R_{f}^{2}}\left(1-e^{-\frac{R_{f}^{2}}{R\left(0\right)^{2}}\left(1-\left(\frac{R_{f}}{R_{f}}\right)^{n}\right)}\right) \\
+    &= \mu\omega_{0}\left(\left(2-\left(n+2\right)\right)e^{-\frac{R_{f}^{2}}{R_{0}^{2}}\left(0\right)}\right)-\mu\frac{2\omega_{0}R_{0}^{2}}{R_{f}^{2}}\left(1-e^{-\frac{R_{f}^{2}}{R_{0}^{2}}\left(0\right)}\right) \\
+    \tau_{r\theta 0} &= -\mu\omega_{0}n \\
+    \therefore n&= \frac{\tau_{r\theta 0}}{\mu \omega_0} = \frac{\tau_{r\theta 0}}{\rho \nu \omega_0}
+    \end{split}
+\end{align}
+We observe that the shear stress at $R_f$ is proportional to $n$ for all $t$. This stress component decays solely with respect to the radial propagation, $R(t)$:
+\begin{align*}
+    \tau_{r\theta}(R_f,t)= -\rho \nu \frac{\omega_0 R_0^2}{R(t)^2}n = -\frac{R_0^2}{R(t)^2}\tau_{r \theta 0}
+\end{align*}
+Substituting Equation (\ref{Eq5}) into (\ref{Eq3}), the confined vortex (\ref{Eq2}) becomes,
+\begin{align}\label{Eq6}
+    u_\theta (r,t) =\frac{\omega_{0}R_{0}^{2}}{r}\left[ 1-e^{-\frac{r^{2}}{R\left(t\right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{\frac{\tau_{r\theta 0}}{\rho \nu \omega_0}}\right)}\right]
+\end{align}
+This approximation allows the slope at the confinement to be adjusted independently by $\tau_{r\theta 0}$ with little affect on the forced inner vortex.
+
+%-------------------------------------------------------
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/fig2.png}
+    \caption{\textit{A cylinder (of no particular height) that contains the stochastic distribution of particle velocities in an arbitrary vertical slice. The solid in blue is the projection of the velocity distribution line in red onto the $\theta$-axis. $q(t)$ (in violet) is the critical radius.}}
+    \label{fig:enter-label}
+\end{figure}
+%-------------------------------------------------------
+
+\subsection{Finding the slope at the vortex core:}
+The slope of the velocity in the vortex's core is found by taking the limit of the gradient of Equation (\ref{Eq2}):
+\begin{align*}
+ \displaystyle \lim_{r \to 0} \frac{\partial u_\theta}{\partial r} &= -\omega_0 R_0^{2} \displaystyle \lim_{r \to 0} \frac{1}{r^2}\left ( 1-e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)} \right )+ \omega_0 R_0^2 \displaystyle \lim_{r \to 0} \left ( \frac{2}{R^2}-\frac{n+2}{R_f^{n+2}}r^n \right )e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)} \\
+ & \textit{using L'Hospital's rule,} \\
+ &= -\omega_0 R_0^2 \displaystyle \lim_{r \to 0} \frac{0-\left ( -\frac{2r}{R^2}+\frac{n+2}{R_f^{n+2}} r^{n+1}\right ) e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)}}{2r} + \omega_0 R_0^2 \left ( \frac{2}{R^2} \right ) \\
+ &= -\omega_0 R_0^2 \displaystyle \lim_{r \to 0}\left ( \frac{1}{R^2}-\frac{n+2}{2R_f^{n+2}}r^n \right ) e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)} + \omega_0 R_0^2 \left ( \frac{2}{R^2} \right ) \\
+ &= -\omega_0 R_0^2 \left ( \frac{1}{R^2} \right ) + \omega_0 R_0^2 \left ( \frac{2}{R^2} \right ) \\
+ &= \frac{\omega_0 R_0^2}{R(t)^2}
+\end{align*}
+
+\subsection{Finding the slope at the boundary:}
+Likewise, for $r=R_f$, we make the substitution in the derivative with $n$ (Equation (\ref{Eq5})),
+\begin{align*}
+    \frac{\partial u_\theta}{\partial r}|_{r=R_f} &= -\frac{\omega_0 R_0^2}{r^2}\left ( 1-e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)} \right ) + \frac{\omega_0 R_0^2}{r}\left ( \frac{2r}{R^2}- \frac{n+2}{R_f^n R^2}r^{n+1} \right )e^{-\frac{r^2}{R^2}\left ( 1-\frac{r^n}{R_f^n} \right)} \\
+    &= -\frac{\omega_0 R_0^2}{R_f^2}\left ( 1-e^{-\frac{R_f^2}{R^2}\left ( 1-\frac{R_f^n}{R_f^n} \right)} \right ) + \frac{\omega_0 R_0^2}{R_f}\left ( \frac{2R_f}{R^2}- \frac{n+2}{R_f^n R^2}R_f^{n+1} \right )e^{-\frac{R_f^2}{R^2}\left ( 1-\frac{R_f^n}{R_f^n} \right)} \\
+    &=-\frac{\omega_0 R_0^2}{R(t)^2}n \\
+    &= - \frac{\tau_{r \theta 0} R_0^2}{\rho \nu R(t)^2}
+\end{align*}
+Thus, the core's slope depends on the initial angular velocity, $\omega_0$, while the slope at $R_f$ is controlled independently by $\tau_{r\theta 0}$. Both of these slopes vary with $R_0$ and $t$. 
+
+
+\section{$u_{D}(r)$ For The Modified Vortex}
+Unlike deriving $u_D(r)$ by solving for $r$ in $\partial_r u_\theta =0$, Equation (\ref{Eq2}) requires an approximation of $q(t)$ by solving for the convergence of $q$ as $t\to \infty$. Even more easily, one can deduce that the final critical radius, $q(t \to \infty)=q_f$, in $\partial_r u_\theta$ can be found if and only if $q_f$ can be found as $R_0 \to \infty$ at $t=0$:
+\begin{align*}
+    \displaystyle \lim_{t \to \infty} \left. \frac{\partial u_\theta}{\partial r}\right|_{r=q(t)} = 0 \Leftrightarrow  \left. \displaystyle \lim_{R_0 \to \infty} \frac{\partial u_\theta}{\partial r}\right|_{r=q_f}^{t=0} =0
+\end{align*}
+This is because $R_0 \in R(t)$ and $t \in R(t)$, and we can solve for $q_f$ in the limit of $\partial_r u_\theta$ as $R_0 \to \infty$ because $R_0 \in q(t)$. Pedantically, by the conditional, it follows that,
+\begin{align*}
+    \left( \left\{ \displaystyle \lim_{t \to \infty} \left. \frac{\partial u_\theta}{\partial r}\right|_{r=q(t)} = 0 \right\} \: \Leftrightarrow  \:  \left\{ \displaystyle \lim_{R_0 \to \infty} \left. \frac{\partial u_\theta}{\partial r}\right|_{r=q(0)} = 0 \right\} \right) \Rightarrow \left( \left\{ \displaystyle \lim_{R_0 \to \infty} q(0) =q_f\right\} \Leftrightarrow \left\{ \displaystyle \lim_{t \to \infty} q(t)  =q_f  \right\} \right)
+\end{align*}
+Proceeding with this shortcut, we find that,
+\begin{align}\label{Eq7}
+    \begin{split}
+    0&= \displaystyle \lim_{R_0 \to \infty} \left. \frac{\partial u_\theta}{\partial r}\right|_{r=q_f}^{t=0} \\
+    0&= \displaystyle \lim_{R_0 \to \infty} -\frac{\omega_0 R_0^2}{q_f^2}\left ( 1-e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} \right ) +  \displaystyle \lim_{R_0 \to \infty} \frac{\omega_0 R_0^2}{q_f}\left ( \frac{2q_f}{R_0^2}- \frac{n+2}{R_f^n R_0^2}q_f^{n+1} \right )e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} \\
+    0&= \displaystyle \lim_{R_0 \to \infty} -\frac{R_0^2}{q_f^2}\left ( 1-e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} \right ) +  \displaystyle \lim_{R_0 \to \infty} \frac{1}{q_f}\left ( 2q_f - \frac{n+2}{R_f^n}q_f^{n+1} \right )e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} \\
+    & \textit{using L'Hospital's rule,} \\
+    0&= -\frac{1}{q_f^2} \displaystyle \lim_{R_0 \to \infty}  R_0^2\left ( 1-e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} \right ) +  \left ( 2- \frac{n+2}{R_f^n}q_f^{n} \right ) \\
+    0&= -\frac{1}{q_f^2} \displaystyle \lim_{R_0 \to \infty}  \frac{0- \left(\frac{2q_f^2}{R_0^3} \left(1-\frac{q_f^n}{R_f^n} \right) \right) e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)}}{-\frac{2}{R_0^3}} +  \left ( 2- \frac{n+2}{R_f^n}q_f^{n} \right ) \\
+    0&= - \displaystyle \lim_{R_0 \to \infty}   \left( 1-\frac{q_f^n}{R_f^n} \right) e^{-\frac{q_f^2}{R_0^2}\left ( 1-\frac{q_f^n}{R_f^n} \right)} +   2- \frac{n+2}{R_f^n}q_f^{n}  \\
+    0 &=\frac{q_f^n}{R_f^n}+ 1- \frac{n+2}{R_f^n}q_f^{n} \\
+    q_f &= \frac{R_f}{\left( n+1 \right)^\frac{1}{n}} \\
+    q_f &= \frac{R_f}{\left( \frac{\tau_{r\theta 0}}{\rho \nu \omega_0}+1 \right)^\frac{\rho \nu \omega_0}{\tau_{r\theta 0}}} 
+    \end{split}
+\end{align}
+and so the final critical radius is dictated by the radius of the confinement and $n$. A close approximation of $q(t)$ from Equation (\ref{Eq7}) is the error function,
+\begin{align}\label{Eq8}
+    q(t) \approx \frac{R_{f}}{\left(n+1\right)^{\frac{1}{n}}}\operatorname{erf}\left(R\left(t\right)\frac{\left(n+1\right)^{\frac{1}{n}}}{R_{f}}\right)
+\end{align}
+which satisfies the equivalence, $\displaystyle \lim_{R_0 \to \infty} q(0) =\displaystyle \lim_{t \to \infty} q(t)=q_f$. The set of critical points, $(q(t), u_\theta (q(t),t))$, for each increment of $t$ forms a decay curve $u_D(r)$, where $R(t)$ in Equation (\ref{Eq8}) can be solved for and substituted into Equation (\ref{Eq6}) with $r=q(t)$:
+\begin{align}\label{Eq9}
+    u_D (r) \approx \frac{\omega_{0}R_{0}^{2}}{r}\left[ 1-\exp \left\{ -\frac{r^{2}}{\left( \frac{R_{f}}{\left(n+1\right)^{\frac{1}{n}}}\operatorname{erf}^{-1}\left(r\frac{\left(n+1\right)^{\frac{1}{n}}}{R_{f}}\right) \right)^{2}}\left(1-\left(\frac{r}{R_{f}}\right)^{n}\right) \right\}\right]
+\end{align}
+
+
+%-------------------------------------------------------
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/fig3.png}
+    \caption{\textit{The confined vortex (\ref{Eq6}) with integer increments of $t$ (in red), where $u_D(r)$ (\ref{Eq9}) is the approximate path of all critical points. As $t\to \infty$, $q(t)\to R_f/\sqrt[n]{n+1}$}}
+    \label{fig:enter-label}
+\end{figure}
+%-------------------------------------------------------
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{An Exact Solution To The Vorticity Transport Equation}
+Suppose we seek a velocity field, $\vec{u}=\left<0,u_\theta,0\right>$ in cylindrical coordinates, whose azimuthal velocity is found by,
+\begin{align*}
+    \frac{\partial u_\theta}{\partial t}&=\nu \left(\frac{\partial^2 u_\theta}{\partial r^2}+\frac{1}{r}\frac{\partial u_\theta}{\partial r} -\frac{u_\theta}{r^2}\right)
+\end{align*}
+Taking the cross product with $\nabla$, we have the vorticity transport equation in cylindrical coordinates in the $\hat{z}$ direction.
+\begin{align}\label{Eq10}
+    \frac{\partial \omega}{\partial t}=\nu \left(\frac{\partial^2 \omega}{\partial r^2}+\frac{1}{r}\frac{\partial \omega}{\partial r}\right)
+\end{align}
+We obtain a solution by the Dirichlet boundary conditions,
+\begin{align*}
+    \left\{\begin{matrix}
+    u_\theta(0,t) =0 \:,& u_\theta(R_f,t)=0 \:,& R_f\in \mathbb{R}^+\\ 
+    u_\theta(r,0)=R(r) \:,& T(0)=1 \:,& 0<R_f
+    \end{matrix} \right\}
+\end{align*}
+denoting vorticity by the separation of variables, $\omega(r,t)=R(r)T(t)$. 
+Equation (\ref{Eq10}) becomes,
+\begin{align*}
+     \frac{\mathrm{d}\left( R(r)T(t)\right)}{\mathrm{d} t} &= \nu \left(\frac{\mathrm{d}^2\left( R(r)T(t)\right)}{\mathrm{d}^2 x}+\frac{1}{r} \frac{\mathrm{d}\left( R(r)T(t)\right)}{\mathrm{d}x} \right)\\
+     R(r)T'(t) &= \nu \left(T(t)R''(r)+\frac{1}{r} T(t)R'(r) \right) \\
+     \frac{T'(t)}{\nu T(t)}&= \frac{R''(r)}{R(r)}+\frac{R'(r)}{rR(r)}
+\end{align*}
+Since both sides of the differential equation are functionally disjoint, suppose they are equal to some constant, $K\in \mathbb{R}$. Then the left hand side becomes,
+\begin{align*}
+    \frac{T'(t)}{\nu T(t)}&=K \\
+    \int \frac{\mathrm{d}T}{T}&=\int K\nu \mathrm{d}t \\
+    \ln(T) &=K\nu t+C \\
+    \therefore \:\: T(t) &=e^{K\nu t} \:\:\:,\:\:\: T(0)=1=e^C
+\end{align*}
+and the right hand side is a Bessel differential equation, which has the solution in terms of zeroth-order Bessel functions of the first and second kind.
+\begin{align*}
+    K&=\frac{R''(r)}{R(r)}+\frac{R'(r)}{rR(r)}\\
+    0&= rR''(r)+R'(r)-KrR(t) \\
+    \therefore \:\: R(r)&= A \:J_0 \left(\sqrt{-K} r\right)+B \:Y_0 \left(\sqrt{-K} r\right)
+\end{align*}
+Since $\displaystyle \lim_{r \to 0} Y_0 \left(\sqrt{-K} r\right)$ is undefined for all $K\in \mathbb{R}$, $B=0$. Additionally, let $K=-\bar{\lambda}^2$ if we consider only the real solutions to vorticity (\ref{Eq10}). Then vorticity becomes a general solution,
+\begin{align*}
+    \omega (r,t) = A \:J_0 \left(\bar{\lambda} r\right)e^{-\bar{\lambda}^2 \nu t}
+\end{align*}
+and using superposition, we can obtain all possible solutions to (\ref{Eq10}) in the form of a Fourier-Bessel series.
+\begin{align*}
+    \omega (r,t) =\sum_{k=1}^{\infty} A_k \:J_0 \left(\bar{\lambda}_k r\right)e^{-\bar{\lambda}_k^2 \nu t}
+\end{align*}
+Because $\omega = \nabla \times u_\theta = \frac{\partial u_\theta}{\partial r} -\frac{u_\theta}{r}$, we can use the integrating factor, $e^{\int \frac{1}{r} dr}=r$, to isolate $u_\theta$.
+\begin{align}\label{Eq11}
+\begin{split}
+    u_\theta &= \frac{1}{r}\int r\omega dr \\
+    &= \frac{1}{r}\int r \sum_{k=1}^{\infty} A_k J_0 \left(\bar{\lambda}_k r \right)e^{-\bar{\lambda}_k^2\nu t} dr \\
+    &= \frac{1}{r} \sum_{k=1}^{\infty} A_k e^{-\bar{\lambda}_k^2 \nu t} \int r  J_0 \left(\bar{\lambda}_k r \right) dr \\
+    &= \frac{1}{r} \sum_{k=1}^{\infty} A_k e^{-\bar{\lambda}_k^2 \nu t} \left (\frac{1}{\bar{\lambda}_k}r \: J_1\left(\bar{\lambda}_k r \right)+C \right)\\
+    &= \sum_{k=1}^{\infty} A_k \frac{1}{\bar{\lambda}_k} \: J_1\left(\bar{\lambda}_k r \right) e^{-\bar{\lambda}_k^2\nu t} +C_1  \:\:\:,\:\:\: u_\theta (0,t)=u_\theta (R_f,t)=C_1=0 \:,\: \forall t\in \mathbb{R}^+\\
+    &= \sum_{k=1}^{\infty} A_k \frac{1}{\bar{\lambda}_k} \: J_1\left(\bar{\lambda}_k r \right) e^{-\bar{\lambda}_k^2 \nu t}\\
+    &= \sum_{k=1}^{\infty} C_k \: J_1\left(\bar{\lambda}_k r \right) e^{-\bar{\lambda}_k^2 \nu t}
+\end{split}
+\end{align}
+Following the boundary condition, $u_\theta (R_f,0)=0$, $\bar{\lambda}_k$ is all roots of the Bessel function such that,
+\begin{align*}
+    J_1\left(\bar{\lambda}_k r \right) &=0 \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:,\:\:\: r\in [0,1]\\
+    \bar{\lambda}_k= \frac{\lambda_k}{R_f} &\Rightarrow  J_1\left(\frac{\lambda_k}{R_f}r \right)=0 \:\:\:,\:\:\: r\in [0,R_f]
+\end{align*}
+where, $\lambda_k \approx 3.14872k+0.715067$. Thus far, the velocity distribution is,
+\begin{align}\label{Eq12}
+    u_\theta (r,t)= \sum_{k=1}^{\infty} C_k \: J_1\left(\frac{\lambda_k}{R_f}r \right) e^{-\frac{\lambda_k^2}{R_f^2} \nu t}
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Insert tabulated values of laambda roots of J_1:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We find the Fourier-Bessel coefficients, $C_k$, by considering the constant irrotational vortex:
+\begin{align}\label{Eq13}
+    u_\theta (r) &= \frac{\Gamma_0}{2\pi r}
+\end{align}
+In Sturm-Liouville theory, because Equation (\ref{Eq11}) is a eigenfunction expansion, $J_1\left(\frac{\lambda_k}{R_f}r \right)$ forms a basis of eigenfunctions in the Fourier Bessel series at $t=0$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman)/05%3A_Non-sinusoidal_Harmonics_and_Special_Functions/5.05%3A_Fourier-Bessel_Series
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{align}\label{Eq14}
+    u_\theta (r) = \sum_{k=1}^{\infty} C_k \: J_1\left(\frac{\lambda_k}{R_f}r \right)
+\end{align}
+such that the coefficients are obtained by the orthogonality relation:
+\begin{align*}
+    C_n = \frac{2}{\alpha^2 \: J_{\nu \pm 1}^2\left(\lambda_n\right)}\int_{0}^{\alpha} x f(x) \:J_\nu \left(\lambda_n \frac{x}{\alpha}\right)dx \:\:\:,\:\:\: x\in [0,\alpha]
+\end{align*}
+Letting $f(x)$ be Equation (\ref{Eq13}), $\alpha=R_f$, and $\lambda_n = \lambda_k$, we find from (\ref{Eq14}),
+\begin{align*}
+    C_k &= \frac{2}{R_f^2 \: J_{2}^2\left(\lambda_k\right)}\int_{0}^{R_f} r \left(\frac{\Gamma_0}{2\pi r} \right) \:J_1 \left(\frac{\lambda_k}{R_f}r\right)dr \:\:\:,\:\:\: r\in [0,R_f]\\
+    &=\frac{2}{R_f^2 \: J_{2}^2\left(\lambda_k\right)} \frac{\Gamma_0}{2\pi} \int_{0}^{R_f} \:J_1 \left(\frac{\lambda_k}{R_f}r\right)dr\\
+    &=\frac{\Gamma_0}{\pi}\frac{1}{R_f^2 \: J_{2}^2\left(\lambda_k\right)} \frac{R_f}{\lambda_k}\left[ 1-J_0 \left(\frac{\lambda_k}{R_f}r\right)  \right]_{0}^{R_f}\\
+    &=\frac{\Gamma_0}{\pi}\frac{1-J_0 \left(\lambda_k\right)}{R_f \lambda_k\: J_{2}^2\left(\lambda_k\right)}
+\end{align*}
+the coefficients can be sustituted into (\ref{Eq12}).
+\begin{align}\label{Eq15}
+    u_\theta (r,t)&=\frac{\Gamma_0}{\pi}\sum_{k=1}^{\infty} \frac{1-J_0 \left(\lambda_k\right)}{R_f \lambda_k\: J_{2}^2\left(\lambda_k\right)} \: J_1\left(\frac{\lambda_k}{R_f}r \right) e^{-\frac{\lambda_k^2}{R_f^2}\nu t}\\
+    &\textit{or,}\\
+    u_\theta (r,t)&=\frac{\Gamma_0}{\pi}\sum_{k=1}^{\infty} \frac{1-J_0 \left(\lambda_k\right)}{R_f \lambda_k\: J_{0}^2\left(\lambda_k\right)} \: J_1\left(\frac{\lambda_k}{R_f}r \right) e^{-\frac{\lambda_k^2}{R_f^2}\nu t}
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Concluding Remarks}
+The decay functions convey useful information about the evolution of rotationally laminar velocity profiles, such as the diffusion rate of kinetic energy with an expanding critical radius. However, this idea has not yet been corroborated by data. The approximate confined vortex was tested only rudimentarily by manually tracking the angles and times of three particles in a swirling rheoscopic fluid (see Figure \ref{5}). While the exact solution to the vorticity transport equation, (\ref{Eq15}), diffuses more realistically than the approximation, it assumes a fixed initial gradient at $R_f$ and does not consider shear stress variation within the boundary layer.
+\begin{figure}[h]
+    \includegraphics[width=0.5\linewidth]{Images/fig5.png}
+    \includegraphics[width=0.5\linewidth]{Images/fig6.png}
+    \caption{Rheoscopic fluid in two experiments comprising of water and pigment powder.}
+    \label{5}
+\end{figure}
+\begin{figure}[h]
+\centering
+    \includegraphics[width=0.6\linewidth]{Images/fig7.png}
+    \caption{First attempt to graph data from two particles (scatter plots in green and purple), where the decay curves were generated by a logistic regression on the $u_\theta -t$ axis. A complete velocity profile was estimated using Equation (\ref{Eq6}), $n=2$, with an estimated kinematic viscosity $\nu=0.33 \:cm^2 /s$, unexpectedly higher than that of the water's actual viscosity, $\nu \approx 0.01 cm^2/s$.}
+\end{figure}
+
+
+\end{document}
+
